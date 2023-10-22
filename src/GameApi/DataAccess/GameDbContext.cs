@@ -21,19 +21,19 @@ public class GameDbContext : DbContext
 		modelBuilder.Entity<Game>()
 			.HasMany<Level>()
 			.WithOne(x => x.Game)
-			.HasForeignKey(x => x.GameId)
 			.IsRequired();
 		
 		modelBuilder.Entity<Level>(level =>
 		{
 			level.HasMany<Answer>()
-				.WithOne(x => x.Level)
+				.WithOne()
 				.HasForeignKey(x => x.LevelId)
-				.IsRequired();
+				.IsRequired(false);
+
 			level.HasMany<Hint>()
-				.WithOne(x=>x.Level)
-				.HasForeignKey(x=>x.LevelId)
-				.IsRequired();
+				.WithOne()
+				.HasForeignKey(x=> x.LevelId)
+				.IsRequired(false);
 		});
 	}
 
