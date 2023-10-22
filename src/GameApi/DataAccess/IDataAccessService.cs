@@ -2,5 +2,5 @@
 
 public interface IDataAccessService
 {
-	
+	Task CreateGame();
 }

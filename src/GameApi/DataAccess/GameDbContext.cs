@@ -18,23 +18,24 @@ public class GameDbContext : DbContext
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
-		modelBuilder.Entity<Game>()
-			.HasMany<Level>()
-			.WithOne(x => x.Game)
-			.IsRequired();
-		
-		modelBuilder.Entity<Level>(level =>
-		{
-			level.HasMany<Answer>()
-				.WithOne()
-				.HasForeignKey(x => x.LevelId)
-				.IsRequired(false);
 
-			level.HasMany<Hint>()
-				.WithOne()
-				.HasForeignKey(x=> x.LevelId)
-				.IsRequired(false);
-		});
+		//modelBuilder.Entity<Game>()
+		//	.HasMany<Level>()
+		//	.WithOne(x => x.Game)
+		//	.IsRequired();
+
+		//modelBuilder.Entity<Level>(level =>
+		//{
+		//	level.HasMany<Answer>()
+		//		.WithOne()
+		//		.HasForeignKey(x => x.LevelId)
+		//		.IsRequired(false);
+
+		//	level.HasMany<Hint>()
+		//		.WithOne()
+		//		.HasForeignKey(x=> x.LevelId)
+		//		.IsRequired(false);
+		//});
 	}
 
 	public DbSet<Game> Games { get; set; }

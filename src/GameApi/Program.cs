@@ -1,15 +1,20 @@
 using GameApi.DataAccess;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+IServiceCollection services = builder.Services;
 
 // Add services to the container.
-builder.Services.AddDbContext<GameDbContext>();
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+//DataBase
+services.AddDbContext<GameDbContext>();
+services.AddSingleton<IDataAccessService, DataAccessService>();
 
-var app = builder.Build();
+services.AddControllers();
+
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+services.AddEndpointsApiExplorer();
+services.AddSwaggerGen();
+
+WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
