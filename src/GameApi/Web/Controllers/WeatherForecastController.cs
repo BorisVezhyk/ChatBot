@@ -1,3 +1,4 @@
+using GameApi.DataAccess;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GameApi.Web.Controllers
@@ -11,11 +12,13 @@ namespace GameApi.Web.Controllers
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
 
+        private readonly GameDbContext _gameDbContext;
         private readonly ILogger<WeatherForecastController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(GameDbContext gameDbContext, ILogger<WeatherForecastController> logger)
         {
-            _logger = logger;
+	        _gameDbContext = gameDbContext;
+	        _logger = logger;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]

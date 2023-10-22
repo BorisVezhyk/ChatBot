@@ -17,15 +17,4 @@
     <PackageReference Include="Telegram.Bot" Version="19.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DataAccess\DataBase\" />
-    <Folder Include="DataAccess\Entities\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="DataAccess\DataBase\games.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>
