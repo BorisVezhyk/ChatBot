@@ -6,7 +6,7 @@ IServiceCollection services = builder.Services;
 // Add services to the container.
 //DataBase
 services.AddDbContext<GameDbContext>();
-services.AddSingleton<IDataAccessService, DataAccessService>();
+services.AddScoped<IDataAccessService, DataAccessService>();
 
 services.AddControllers();
 
