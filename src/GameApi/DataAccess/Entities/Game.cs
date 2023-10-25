@@ -23,6 +23,11 @@ public class Game
 	public string? Description { get; set; }
 
 	/// <summary>
+	/// Gets or sets the status.
+	/// </summary>
+	public char Status { get; set; }
+
+	/// <summary>
 	/// Gets or sets the start date.
 	/// </summary>
 	public DateTime StartDate { get; set; }

@@ -5,7 +5,7 @@ namespace GameApi.Web.Models;
 /// <summary>
 /// The game request for create or updated existing game.
 /// </summary>
-public class GameRequest
+public class GameRequest : IValidatableObject
 {
 	/// <summary>
 	/// The name of game.
@@ -18,7 +18,6 @@ public class GameRequest
 	/// </summary>
 	[Required(ErrorMessage = "StartDate is required.")]
 	[DataType(DataType.Date)]
-	//todo add validation for StartDate and FinishDate.
 	public DateTime StartDate { get; set; }
 
 	/// <summary>
@@ -31,4 +30,18 @@ public class GameRequest
 	/// </summary>
 	[DataType(DataType.Date)]
 	public DateTime? FinishDate { get; set; }
+
+	///<inheritdoc/>
+	public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+	{
+		if (StartDate<=DateTime.Now)
+		{
+			yield return new ValidationResult($"{nameof(StartDate)} can't be in the past.");
+		}
+
+		if (FinishDate != DateTime.MinValue && FinishDate <= StartDate)
+		{
+			yield return new ValidationResult($"{nameof(StartDate)} must be less than {nameof(FinishDate)}");
+		}
+	}
 }
